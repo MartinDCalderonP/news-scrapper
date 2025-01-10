@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as cheerio from 'cheerio'
 import { Article } from './types'
 
-async function scrapeArticle(): Promise<void> {
+const scrapeArticle = async (): Promise<void> => {
   try {
     const url =
       'https://anccom.sociales.uba.ar/2024/04/22/los-trabajadores-de-telam-presentan-su-propio-proyecto-legislativo/'
