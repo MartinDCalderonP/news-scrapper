@@ -1,0 +1,10 @@
+{
+  "name": "news-scrapper",
+  "version": "1.0.0",
+  "description": "A simple news scrapper",
+  "private": true,
+  "scripts": {
+    "start": "node index.ts"
+  },
+  "dependencies": {}
+}
