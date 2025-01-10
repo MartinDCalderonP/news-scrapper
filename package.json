@@ -4,7 +4,7 @@
   "description": "A simple news scrapper",
   "private": true,
   "scripts": {
-    "start": "node index.ts"
+    "start": "ts-node index.ts"
   },
   "dependencies": {
     "@types/node": "^22.10.5",
