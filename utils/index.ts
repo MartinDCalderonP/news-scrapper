@@ -18,3 +18,11 @@ export const stringToSlug = (str: string): string => {
     .filter((char) => 'abcdefghijklmnopqrstuvwxyz0123456789-'.includes(char))
     .join('')
 }
+
+export const portalFromUrl = (url: string): string => {
+  const portal = url.split('/')[2].split('.')[0]
+
+  if (portal === 'anccom') return 'ANCCom'
+
+  return portal
+}
