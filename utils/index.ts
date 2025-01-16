@@ -26,3 +26,25 @@ export const portalFromUrl = (url: string): string => {
 
   return portal
 }
+
+export const formatNewsDate = (date: string): string => {
+  const months: { [key: string]: string } = {
+    Ene: 'enero',
+    Feb: 'febrero',
+    Mar: 'marzo',
+    Abr: 'abril',
+    May: 'mayo',
+    Jun: 'junio',
+    Jul: 'julio',
+    Ago: 'agosto',
+    Sep: 'septiembre',
+    Oct: 'octubre',
+    Nov: 'noviembre',
+    Dic: 'diciembre'
+  }
+
+  const [month, day, year] = date.split(' ')
+  const formattedDay = day.replace(',', '')
+
+  return `${formattedDay.padStart(2, '0')} de ${months[month]} de ${year}`
+}
