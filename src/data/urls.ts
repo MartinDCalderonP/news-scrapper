@@ -8,8 +8,8 @@ const urls = [
   'https://anccom.sociales.uba.ar/2024/08/22/denunciar-los-crimenes-de-guerra-de-israel-no-es-antisemitismo/',
   'https://anccom.sociales.uba.ar/2024/09/02/los-trabajadores-de-prensa-reclaman-un-salario-por-arriba-de-la-linea-de-pobreza/',
   'https://anccom.sociales.uba.ar/2024/09/12/la-musica-se-paga-o-se-apaga/',
-  'https://anccom.sociales.uba.ar/2024/12/04/libertad-de-expresion-en-la-era-digital/',
   'https://anccom.sociales.uba.ar/2024/11/22/el-derecho-a-reparar/',
+  'https://anccom.sociales.uba.ar/2024/12/04/libertad-de-expresion-en-la-era-digital/',
   'https://anccom.sociales.uba.ar/2024/12/17/ciudad-universitaria-se-convirtio-en-disney/'
 ]
 
