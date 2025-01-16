@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as cheerio from 'cheerio'
 import { News } from './types'
 import urls from './data/urls'
-import { stringToSlug } from './utils'
+import { portalFromUrl, stringToSlug } from './utils'
 
 const scrapeNews = async (url: string): Promise<News | undefined> => {
   try {
@@ -11,7 +11,7 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
 
     const news: News = {
       url,
-      author: $('.autor').text().trim(),
+      portal: portalFromUrl(url),
       date: $('.published').text().trim(),
       title: $('h1.entry-title').text().trim(),
       slug: stringToSlug($('h1.entry-title').text().trim()),
