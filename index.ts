@@ -9,12 +9,14 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
     const response = await axios.get(url)
     const $ = cheerio.load(response.data)
 
+    const currentTitle = $('h1.entry-title').text().trim()
+
     const news: News = {
       url,
       portal: portalFromUrl(url),
       date: $('.published').text().trim(),
-      title: $('h1.entry-title').text().trim(),
-      slug: stringToSlug($('h1.entry-title').text().trim()),
+      title: currentTitle,
+      slug: stringToSlug(currentTitle),
       description: $('.et_pb_text_inner').first().text().trim(),
       content: $('.entry-content p')
         .slice(1)
