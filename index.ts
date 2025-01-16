@@ -1,18 +1,20 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
-import { Article } from './types'
+import { News } from './types'
 import urls from './data/urls'
+import { stringToSlug } from './utils'
 
-const scrapeArticle = async (url: string): Promise<Article | undefined> => {
+const scrapeNews = async (url: string): Promise<News | undefined> => {
   try {
     const response = await axios.get(url)
     const $ = cheerio.load(response.data)
 
-    const article: Article = {
+    const news: News = {
       url,
       author: $('.autor').text().trim(),
       date: $('.published').text().trim(),
       title: $('h1.entry-title').text().trim(),
+      slug: stringToSlug($('h1.entry-title').text().trim()),
       description: $('.et_pb_text_inner').first().text().trim(),
       content: $('.entry-content p')
         .slice(1)
@@ -53,19 +55,19 @@ const scrapeArticle = async (url: string): Promise<Article | undefined> => {
         .get()
     }
 
-    return article
+    return news
   } catch (error) {
     if (error instanceof Error) {
-      console.error('Error scraping the article:', error.message)
+      console.error('Error scraping the news:', error.message)
     } else {
       console.error('An unknown error occurred')
     }
   }
 }
 
-const fetchArticles = async () => {
-  const articles = await Promise.all(urls.map(scrapeArticle))
-  console.log(articles)
+const fetchNews = async () => {
+  const news = await Promise.all(urls.map(scrapeNews))
+  console.log(news)
 }
 
-fetchArticles()
+fetchNews()
