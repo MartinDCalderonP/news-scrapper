@@ -1,7 +1,7 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 import { Article } from './types'
-import urls from './assets/urls'
+import urls from './data/urls'
 
 const scrapeArticle = async (url: string): Promise<Article | undefined> => {
   try {
