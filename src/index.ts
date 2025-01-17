@@ -14,9 +14,10 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
     const news: News = {
       url,
       portal: portalFromUrl(url),
-      date: formatNewsDate($('.published').text().trim()),
       title: currentTitle,
       slug: stringToSlug(currentTitle),
+      date: formatNewsDate($('.published').text().trim()),
+      photographer: $('.fotografo').text().trim().replace('Fotografía: ', ''),
       description: $('.et_pb_text_inner').first().text().trim(),
       content: $('.entry-content p')
         .slice(1)
