@@ -27,24 +27,24 @@ export const portalFromUrl = (url: string): string => {
   return portal
 }
 
-export const formatNewsDate = (date: string): string => {
-  const months: { [key: string]: string } = {
-    Ene: 'enero',
-    Feb: 'febrero',
-    Mar: 'marzo',
-    Abr: 'abril',
-    May: 'mayo',
-    Jun: 'junio',
-    Jul: 'julio',
-    Ago: 'agosto',
-    Sep: 'septiembre',
-    Oct: 'octubre',
-    Nov: 'noviembre',
-    Dic: 'diciembre'
+export const formatNewsDate = (date: string): Date => {
+  const months: { [key: string]: number } = {
+    Ene: 0,
+    Feb: 1,
+    Mar: 2,
+    Abr: 3,
+    May: 4,
+    Jun: 5,
+    Jul: 6,
+    Ago: 7,
+    Sep: 8,
+    Oct: 9,
+    Nov: 10,
+    Dic: 11
   }
 
   const [month, day, year] = date.split(' ')
-  const formattedDay = day.replace(',', '')
+  const formattedDay = parseInt(day.replace(',', ''), 10)
 
-  return `${formattedDay.padStart(2, '0')} de ${months[month]} de ${year}`
+  return new Date(parseInt(year, 10), months[month], formattedDay)
 }
