@@ -3,7 +3,7 @@ export interface News {
   portal: string
   title: string
   slug: string
-  date: Date
+  date: string
   photographer: string
   description: string
   content: string

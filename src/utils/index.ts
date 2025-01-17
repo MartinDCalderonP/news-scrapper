@@ -27,7 +27,7 @@ export const portalFromUrl = (url: string): string => {
   return portal
 }
 
-export const formatNewsDate = (date: string): Date => {
+export const formatNewsDate = (date: string): string => {
   const months: { [key: string]: number } = {
     Ene: 0,
     Feb: 1,
@@ -44,7 +44,12 @@ export const formatNewsDate = (date: string): Date => {
   }
 
   const [month, day, year] = date.split(' ')
-  const formattedDay = parseInt(day.replace(',', ''), 10)
 
-  return new Date(parseInt(year, 10), months[month], formattedDay)
+  const formattedDate = new Date(
+    parseInt(year, 10),
+    months[month],
+    parseInt(day.replace(',', ''), 10)
+  )
+
+  return formattedDate.toISOString().split('T')[0]
 }
