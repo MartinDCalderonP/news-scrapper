@@ -49,10 +49,10 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
             }
           })
 
-          return paragraphText
+          return `<p>${paragraphText}</p>`
         })
         .get()
-        .join('\n\n'),
+        .join(''),
       images: $('.entry-content img')
         .map((_, img) => $(img).attr('src'))
         .get()
