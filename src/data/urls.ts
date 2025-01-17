@@ -1,4 +1,4 @@
-const urls = [
+const anccomUrls = [
   'https://anccom.sociales.uba.ar/2024/04/22/los-trabajadores-de-telam-presentan-su-propio-proyecto-legislativo/',
   'https://anccom.sociales.uba.ar/2024/05/19/y-el-polideportivo-donde-esta/',
   'https://anccom.sociales.uba.ar/2024/05/25/la-salud-tambien-para/',
@@ -12,5 +12,7 @@ const urls = [
   'https://anccom.sociales.uba.ar/2024/12/04/libertad-de-expresion-en-la-era-digital/',
   'https://anccom.sociales.uba.ar/2024/12/17/ciudad-universitaria-se-convirtio-en-disney/'
 ]
+
+const urls = [...anccomUrls]
 
 export default urls
