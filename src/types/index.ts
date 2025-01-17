@@ -4,7 +4,7 @@ export interface News {
   title: string
   slug: string
   date: string
-  photographer: string
+  photographer?: string
   description: string
   content: string
   images: string[]
