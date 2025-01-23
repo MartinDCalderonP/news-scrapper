@@ -25,6 +25,7 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
           const text = $(p).html()?.trim() ?? ''
           const strongs = $(p).find('strong')
           const brs = $(p).find('br')
+          const styles = $(p).find('[style]')
 
           let paragraphText = text
 
@@ -39,6 +40,11 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
 
           brs.each((_, br) => {
             paragraphText = paragraphText.replace('<br>', '<br/>')
+          })
+
+          styles.each((_, style) => {
+            const styleText = $(style).attr('style') ?? ''
+            paragraphText = paragraphText.replace(` style="${styleText}"`, '')
           })
 
           return `<p>${paragraphText}</p>`
