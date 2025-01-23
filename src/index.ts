@@ -62,8 +62,7 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
 
 const fetchNews = async () => {
   const news = await Promise.all(urls.map(scrapeNews))
-  // @ts-ignore
-  console.log("'" + news[0]?.content + "',")
+  console.log(news)
 }
 
 fetchNews()
