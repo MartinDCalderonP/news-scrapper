@@ -24,7 +24,6 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
         .map((_, p) => {
           const text = $(p).html()?.trim() ?? ''
           const strongs = $(p).find('strong')
-          const links = $(p).find('a')
           const brs = $(p).find('br')
 
           let paragraphText = text
@@ -36,18 +35,6 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
               strongText,
               `<strong>${strongText}</strong>`
             )
-          })
-
-          links.each((_, a) => {
-            const linkText = $(a).text().trim()
-            const href = $(a).attr('href')
-
-            if (linkText && href) {
-              paragraphText = paragraphText.replace(
-                linkText,
-                `<a href="${href}">${linkText}</a>`
-              )
-            }
           })
 
           brs.each((_, br) => {
@@ -75,7 +62,8 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
 
 const fetchNews = async () => {
   const news = await Promise.all(urls.map(scrapeNews))
-  console.log(news)
+  // @ts-ignore
+  console.log("'" + news[0]?.content + "',")
 }
 
 fetchNews()
