@@ -10,9 +10,6 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
     const $ = cheerio.load(response.data)
 
     const currentTitle = $('h1.entry-title').text().trim()
-    const images = $('.entry-content img')
-      .map((_, img) => $(img).attr('src'))
-      .get()
 
     const news: News = {
       url,
@@ -54,8 +51,12 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
         })
         .get()
         .join(''),
-      centralImage: images[0],
-      extraImages: images.slice(1)
+      centralImage: $('.entry-content img')
+        .map((_, img) => $(img).attr('src'))
+        .get()[0],
+      sliderImages: $('.et_pb_gallery_item img')
+        .map((_, img) => $(img).attr('src')?.replace('-400x284', ''))
+        .get()
     }
 
     return news
@@ -70,7 +71,12 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
 
 const fetchNews = async () => {
   const news = await Promise.all(urls.map(scrapeNews))
-  console.log(news)
+  console.log('centralImage: "' + news[0]?.centralImage + '",')
+  console.log(
+    'sliderImages: [' +
+      news[0]?.sliderImages?.map((img) => '"' + img + '"').join(', ') +
+      '],'
+  )
 }
 
 fetchNews()
