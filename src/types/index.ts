@@ -8,5 +8,5 @@ export interface News {
   description: string
   content: string
   centralImage: string
-  extraImages?: string[]
+  sliderImages?: string[]
 }
