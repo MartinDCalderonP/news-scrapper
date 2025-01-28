@@ -10,6 +10,9 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
     const $ = cheerio.load(response.data)
 
     const currentTitle = $('h1.entry-title').text().trim()
+    const images = $('.entry-content img')
+      .map((_, img) => $(img).attr('src'))
+      .get()
 
     const news: News = {
       url,
@@ -51,9 +54,8 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
         })
         .get()
         .join(''),
-      images: $('.entry-content img')
-        .map((_, img) => $(img).attr('src'))
-        .get()
+      centralImage: images[0],
+      extraImages: images.slice(1)
     }
 
     return news

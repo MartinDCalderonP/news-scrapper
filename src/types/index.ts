@@ -7,5 +7,6 @@ export interface News {
   photographer?: string
   description: string
   content: string
-  images: string[]
+  centralImage: string
+  extraImages: string[]
 }
