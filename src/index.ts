@@ -58,7 +58,7 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
             $(element).attr('src') !== centralImage
           ) {
             const src = $(element).attr('src') ?? ''
-            return `<img alt="${imageName(src)}" src="${src}" />`
+            return `<Image alt="${imageName(src)}" loading="lazy" src="${src}" />`
           }
         })
         .get()
