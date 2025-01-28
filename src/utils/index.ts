@@ -53,3 +53,7 @@ export const formatNewsDate = (date: string): string => {
 
   return formattedDate.toISOString().split('T')[0]
 }
+
+export const imageName = (url: string): string => {
+  return url.split('/').pop() ?? ''
+}
