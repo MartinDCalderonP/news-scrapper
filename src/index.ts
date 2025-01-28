@@ -55,7 +55,7 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
         .get()
         .join(''),
       centralImage: images[0],
-      extraImages: images.slice(1) ?? []
+      extraImages: images.slice(1)
     }
 
     return news
