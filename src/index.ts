@@ -9,6 +9,11 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
     const response = await axios.get(url)
     const $ = cheerio.load(response.data)
 
+    const authorText = $('.autor')
+      .text()
+      .trim()
+      .replace(/^Por\s+/i, '')
+    const [author, coauthor] = authorText.split(/\s+y\s+/)
     const currentTitle = $('h1.entry-title').text().trim()
     const centralImage = $('.entry-content img')
       .map((_, img) => $(img).attr('src'))
@@ -16,6 +21,8 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
 
     const news: News = {
       url,
+      author,
+      coauthor,
       portal: portalFromUrl(url),
       title: currentTitle,
       slug: stringToSlug(currentTitle),
@@ -58,7 +65,9 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
             $(element).attr('src') !== centralImage
           ) {
             const src = $(element).attr('src') ?? ''
-            return `<Image alt="${imageName(src)}" loading="lazy" src="${src}" />`
+            return `<Image alt="${imageName(
+              src
+            )}" loading="lazy" src="${src}" />`
           }
         })
         .get()
