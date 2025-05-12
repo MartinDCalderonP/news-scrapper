@@ -8,6 +8,8 @@ interface ScrapeNewsParams {
   url: string
 }
 
+const MY_NAME = 'Martin Calderón'
+
 const scrapeNews = async ({
   url
 }: ScrapeNewsParams): Promise<News | undefined> => {
@@ -19,7 +21,10 @@ const scrapeNews = async ({
       .text()
       .trim()
       .replace(/^Por\s+/i, '')
-    const [author, coauthor] = authorText.split(/\s+y\s+/)
+    const authors = authorText.split(/\s+y\s+/).map((a) => a.trim())
+    const coauthor =
+      authors.length > 1 ? authors.find((a) => a !== MY_NAME) : ''
+
     const currentTitle = $('h1.entry-title').text().trim()
     const centralImage = $('.entry-content img')
       .map((_, img) => $(img).attr('src'))
@@ -28,7 +33,7 @@ const scrapeNews = async ({
 
     const news: News = {
       url,
-      author,
+      author: MY_NAME,
       coauthor,
       portal: portalFromUrl({ url }),
       title: currentTitle,
