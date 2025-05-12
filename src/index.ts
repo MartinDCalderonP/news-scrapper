@@ -4,7 +4,13 @@ import { News } from './types'
 import urls from './data/urls'
 import { formatNewsDate, imageName, portalFromUrl, stringToSlug } from './utils'
 
-const scrapeNews = async (url: string): Promise<News | undefined> => {
+interface ScrapeNewsParams {
+  url: string
+}
+
+const scrapeNews = async ({
+  url
+}: ScrapeNewsParams): Promise<News | undefined> => {
   try {
     const response = await axios.get(url)
     const $ = cheerio.load(response.data)
@@ -18,15 +24,16 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
     const centralImage = $('.entry-content img')
       .map((_, img) => $(img).attr('src'))
       .get()[0]
+    const date = $('.published').text().trim()
 
     const news: News = {
       url,
       author,
       coauthor,
-      portal: portalFromUrl(url),
+      portal: portalFromUrl({ url }),
       title: currentTitle,
-      slug: stringToSlug(currentTitle),
-      date: formatNewsDate($('.published').text().trim()),
+      slug: stringToSlug({ string: currentTitle }),
+      date: formatNewsDate({ date }),
       photographer: $('.fotografo').text().trim().replace('Fotografía: ', ''),
       description: $('.et_pb_text_inner').first().text().trim(),
       content: $('.entry-content p, .entry-content img')
@@ -65,9 +72,9 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
             $(element).attr('src') !== centralImage
           ) {
             const src = $(element).attr('src') ?? ''
-            return `<Image alt="${imageName(
-              src
-            )}" loading="lazy" src="${src}" />`
+            return `<Image alt="${imageName({
+              url: src
+            })}" loading="lazy" src="${src}" />`
           }
         })
         .get()
@@ -89,7 +96,7 @@ const scrapeNews = async (url: string): Promise<News | undefined> => {
 }
 
 const fetchNews = async () => {
-  const news = await Promise.all(urls.map(scrapeNews))
+  const news = await Promise.all(urls.map((url) => scrapeNews({ url })))
   console.log(news)
 }
 

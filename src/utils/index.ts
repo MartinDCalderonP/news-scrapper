@@ -1,13 +1,21 @@
-export const stringToSlug = (str: string): string => {
+interface StringToSlugParams {
+  string: string
+}
+
+type Mapping = {
+  [key: string]: string
+}
+
+export const stringToSlug = ({ string }: StringToSlugParams): string => {
   const from = 'áàäâãéèëêẽíìïîĩóòöôõúùüûũñç'
   const to = 'aaaaaeeeeeiiiiiooooouuuuunc'
-  const mapping: { [key: string]: string } = {}
+  const mapping: Mapping = {}
 
-  for (let i = 0; i < from.length; i++) {
-    mapping[from.charAt(i)] = to.charAt(i)
-  }
+  from.split('').forEach((char, i) => {
+    mapping[char] = to.charAt(i)
+  })
 
-  return str
+  return string
     .toLowerCase()
     .split('')
     .map((char) => mapping[char] || char)
@@ -19,7 +27,11 @@ export const stringToSlug = (str: string): string => {
     .join('')
 }
 
-export const portalFromUrl = (url: string): string => {
+interface PortalFromUrlParams {
+  url: string
+}
+
+export const portalFromUrl = ({ url }: PortalFromUrlParams): string => {
   const portal = url.split('/')[2].split('.')[0]
 
   if (portal === 'anccom') return 'ANCCom'
@@ -27,8 +39,16 @@ export const portalFromUrl = (url: string): string => {
   return portal
 }
 
-export const formatNewsDate = (date: string): string => {
-  const months: { [key: string]: number } = {
+interface FormatNewsDateParams {
+  date: string
+}
+
+type Months = {
+  [key: string]: number
+}
+
+export const formatNewsDate = ({ date }: FormatNewsDateParams): string => {
+  const months: Months = {
     Ene: 0,
     Feb: 1,
     Mar: 2,
@@ -54,6 +74,10 @@ export const formatNewsDate = (date: string): string => {
   return formattedDate.toISOString().split('T')[0]
 }
 
-export const imageName = (url: string): string => {
+interface ImageNameParams {
+  url: string
+}
+
+export const imageName = ({ url }: ImageNameParams): string => {
   return url.split('/').pop() ?? ''
 }
