@@ -10,7 +10,9 @@ const anccomUrls = [
   'https://anccom.sociales.uba.ar/2024/09/12/la-musica-se-paga-o-se-apaga/',
   'https://anccom.sociales.uba.ar/2024/11/22/el-derecho-a-reparar/',
   'https://anccom.sociales.uba.ar/2024/12/04/libertad-de-expresion-en-la-era-digital/',
-  'https://anccom.sociales.uba.ar/2024/12/17/ciudad-universitaria-se-convirtio-en-disney/'
+  'https://anccom.sociales.uba.ar/2024/12/17/ciudad-universitaria-se-convirtio-en-disney/',
+  'https://anccom.sociales.uba.ar/2025/04/25/15-anos-de-television-comunitaria-y-politica/',
+  'https://anccom.sociales.uba.ar/2025/05/08/la-sindicalizacion-en-el-streaming-avanza/'
 ]
 
 const urls = [...anccomUrls]
