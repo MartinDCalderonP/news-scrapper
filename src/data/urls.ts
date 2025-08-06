@@ -13,7 +13,8 @@ const anccomUrls = [
   'https://anccom.sociales.uba.ar/2024/12/17/ciudad-universitaria-se-convirtio-en-disney/',
   'https://anccom.sociales.uba.ar/2025/04/25/15-anos-de-television-comunitaria-y-politica/',
   'https://anccom.sociales.uba.ar/2025/05/08/la-sindicalizacion-en-el-streaming-avanza/',
-  'https://anccom.sociales.uba.ar/2025/06/04/le-siguen-echando-nafta-al-subte/'
+  'https://anccom.sociales.uba.ar/2025/06/04/le-siguen-echando-nafta-al-subte/',
+  'https://anccom.sociales.uba.ar/2025/08/04/el-asbesto-del-subte-sigue-matando/'
 ]
 
 const urls = [...anccomUrls]
