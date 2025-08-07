@@ -14,7 +14,9 @@ const anccomUrls = [
   'https://anccom.sociales.uba.ar/2025/04/25/15-anos-de-television-comunitaria-y-politica/',
   'https://anccom.sociales.uba.ar/2025/05/08/la-sindicalizacion-en-el-streaming-avanza/',
   'https://anccom.sociales.uba.ar/2025/06/04/le-siguen-echando-nafta-al-subte/',
-  'https://anccom.sociales.uba.ar/2025/08/04/el-asbesto-del-subte-sigue-matando/'
+  'https://anccom.sociales.uba.ar/2025/08/04/el-asbesto-del-subte-sigue-matando/',
+  'https://anccom.sociales.uba.ar/2025/08/05/alarma-en-la-estacion-independencia-del-subte-e/',
+  'https://anccom.sociales.uba.ar/2025/08/06/esta-radio-ya-no-es-con-vos/'
 ]
 
 const urls = [...anccomUrls]
